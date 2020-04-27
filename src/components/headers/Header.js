@@ -6,11 +6,9 @@ import SchoolIcon from 'react-native-vector-icons/Ionicons';
 import PracticeModal from '../modals/PracticeModal';
 import MaterialTabs from 'react-native-material-tabs';
 
-
 const SCREEN_NAMES = ['Verbs', 'Favorite', 'Practice'];
 
-const Header = ({ navigation, state}) => {
-
+const Header = ({navigation, state}) => {
   const [modal, setModal] = useState(false);
   let words = [];
   let setWords = null;
