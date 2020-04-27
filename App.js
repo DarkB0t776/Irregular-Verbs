@@ -6,7 +6,7 @@ import {
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import VerbsScreen from './src/screens/VerbsScreen';
 import FavoriteScreen from './src/screens/FavoriteScreen';
 import PracticeScreen from './src/screens/PracticeScreen';
@@ -23,7 +23,6 @@ const Drawer = createDrawerNavigator();
 const PracticeStack = createStackNavigator();
 const MainStack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
-
 
 const Practice = ({navigation}) => (
   <PracticeStack.Navigator>
@@ -47,12 +46,8 @@ const Main = () => (
   <Tab.Navigator
     initialRouteName="Verbs"
     headerMode="screen"
-    tabBar={props => <Header {...props} />}
-  >
-    <Tab.Screen
-      name="Verbs"
-      component={VerbsScreen}
-    />
+    tabBar={props => <Header {...props} />}>
+    <Tab.Screen name="Verbs" component={VerbsScreen} />
     <Tab.Screen name="Favorite" component={FavoriteScreen} />
     <Tab.Screen name="Practice" component={PracticeScreen} />
   </Tab.Navigator>
@@ -75,8 +70,16 @@ const App = props => {
         drawerStyle={styles.drawerMenu}
         drawerContent={CustomDrawerContent}
         drawerContentOptions={{inactiveTintColor: 'white'}}>
-        <Drawer.Screen name="Settings" component={SettingsScreen} options={{gestureEnabled: false}} />
-        <Drawer.Screen name="MainPractice" component={Practice} options={{gestureEnabled: false}} />
+        <Drawer.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{gestureEnabled: false}}
+        />
+        <Drawer.Screen
+          name="MainPractice"
+          component={Practice}
+          options={{gestureEnabled: false}}
+        />
         <Drawer.Screen name="Main" component={Main} />
       </Drawer.Navigator>
     </NavigationContainer>
