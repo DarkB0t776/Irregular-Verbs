@@ -3,10 +3,11 @@ import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import ArrowLeft from 'react-native-vector-icons/AntDesign';
 
 const DefaultStackHeader = ({screenName, navigation, exam, scene}) => {
-  console.log(scene);
-  const words = scene.route.params.words;
-  const setWords = scene.route.params.setAllWords || scene.route.params.setWords;
-  const setPercentage = scene.route.params.setPercentage;
+  const words = scene.route.params ? scene.route.params.words : null;
+  const setWords = scene.route.params ? scene.route.params.setWords : null;
+  const setPercentage = scene.route.params
+    ? scene.route.params.setPercentage
+    : null;
 
   //Handle navigation
   const navigationHandler = () => {
@@ -21,7 +22,11 @@ const DefaultStackHeader = ({screenName, navigation, exam, scene}) => {
       });
     }
 
-    if (scene.route.name === 'PracticeAll' || scene.route.name === 'Exam') {
+    if (
+      scene.route.name === 'PracticeAll' ||
+      scene.route.name === 'Exam' ||
+      scene.route.name === 'Settings'
+    ) {
       return navigation.navigate('Main', {screen: 'Verbs'});
     }
     return navigation.navigate('MainPractice', {screen: 'PracticeAll'});
@@ -29,8 +34,7 @@ const DefaultStackHeader = ({screenName, navigation, exam, scene}) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        onPress={navigationHandler}>
+      <TouchableOpacity onPress={navigationHandler}>
         <ArrowLeft name="arrowleft" style={styles.arrowIcon} />
       </TouchableOpacity>
       <Text style={styles.screenName}>{screenName}</Text>

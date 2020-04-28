@@ -20,26 +20,27 @@ import Header from './src/components/headers/Header';
 import DrawerMenuList from './src/components/DrawerMenuList';
 
 const Drawer = createDrawerNavigator();
-const PracticeStack = createStackNavigator();
+// const PracticeStack = createStackNavigator();
 const MainStack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
 
-const Practice = ({navigation}) => (
-  <PracticeStack.Navigator>
-    <PracticeStack.Screen
+const Stack = ({navigation}) => (
+  <MainStack.Navigator>
+    <MainStack.Screen
       name="Practice"
       component={PracticeScreen}
       options={{header: () => null}}
     />
-    <PracticeStack.Screen name="PracticeAll" component={PracticeAllScreen} />
-    <PracticeStack.Screen name="PracticeWord" component={PracticeWordScreen} />
-    <PracticeStack.Screen
+    <MainStack.Screen name="PracticeAll" component={PracticeAllScreen} />
+    <MainStack.Screen name="PracticeWord" component={PracticeWordScreen} />
+    <MainStack.Screen
       name="PracticeResults"
       component={PracticeResultsScreen}
     />
-    <PracticeStack.Screen name="Exam" component={ExamScreen} />
-    <PracticeStack.Screen name="Cards" component={CardsScreen} />
-  </PracticeStack.Navigator>
+    <MainStack.Screen name="Exam" component={ExamScreen} />
+    <MainStack.Screen name="Cards" component={CardsScreen} />
+    <MainStack.Screen name="Settings" component={SettingsScreen} />
+  </MainStack.Navigator>
 );
 
 const Main = () => (
@@ -71,15 +72,11 @@ const App = props => {
         drawerContent={CustomDrawerContent}
         drawerContentOptions={{inactiveTintColor: 'white'}}>
         <Drawer.Screen
-          name="Settings"
-          component={SettingsScreen}
-          options={{gestureEnabled: false}}
-        />
-        <Drawer.Screen
           name="MainPractice"
-          component={Practice}
+          component={Stack}
           options={{gestureEnabled: false}}
         />
+        <Drawer.Screen name="Settings" component={SettingsScreen} />
         <Drawer.Screen name="Main" component={Main} />
       </Drawer.Navigator>
     </NavigationContainer>

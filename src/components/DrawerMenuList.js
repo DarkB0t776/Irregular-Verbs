@@ -14,16 +14,21 @@ const DrawerMenuList = ({navigation, state}) => {
   if (state) {
     let main = state.routes.find(e => e.name === 'Main');
     if (main.state) {
-      showSortModal = main.state.routes.find(r => r.name === 'Verbs').params.showSortModal;
-      showFontModal = main.state.routes.find(r => r.name === 'Verbs').params.showFontModal;
+      showSortModal = main.state.routes.find(r => r.name === 'Verbs').params
+        .showSortModal;
+      showFontModal = main.state.routes.find(r => r.name === 'Verbs').params
+        .showFontModal;
       words = main.state.routes.find(r => r.name === 'Verbs').params.words;
-      changeColor = main.state.routes.find(r => r.name === 'Verbs').params.changeColor;
+      changeColor = main.state.routes.find(r => r.name === 'Verbs').params
+        .changeColor;
     }
   }
 
   return (
     <View style={styles.listContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('MainPractice', {
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('MainPractice', {
             screen: 'Cards',
             params: {
               words,
@@ -36,13 +41,17 @@ const DrawerMenuList = ({navigation, state}) => {
           <Text style={styles.text}>Flash Cards</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('MainPractice', {screen: 'Settings'})
+        }>
         <View style={styles.itemContainer}>
           <SettingsIcon name="settings" style={styles.text} />
           <Text style={styles.text}>Settings</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => {
+      <TouchableOpacity
+        onPress={() => {
           navigation.closeDrawer();
           showSortModal();
         }}>
@@ -51,7 +60,8 @@ const DrawerMenuList = ({navigation, state}) => {
           <Text style={styles.text}>Sort</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => {
+      <TouchableOpacity
+        onPress={() => {
           navigation.closeDrawer();
           showFontModal();
         }}>
