@@ -3,15 +3,15 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {useNavigationState, CommonActions} from '@react-navigation/native';
 import Colors from '../constants/Colors';
 import FontFamilyModal from '../components/modals/FontFamilyModal';
-import DefaultStackHeader from '../components/headers/DefaultStackHeader';
+import NotificationModal from '../components/modals/NotificationModal';
+import {CheckBox, Divider} from 'react-native-elements';
 
 let PushNotification = require('react-native-push-notification');
-const SettingsScreen = ({navigation}) => {
+const SettingsScreen = () => {
   const [showFontModal, setShowFontModal] = useState(false);
-  // const [fontFamily, setFontFamily] = useState('Android Standard');
+  const [showNotfModal, setShowNotfModal] = useState(false);
+  const [notfInterval, setNotfInterval] = useState(24);
   const state = useNavigationState(state => state);
-
-  // console.log(state);
 
   const fontFamily = state.routes
     .find(r => r.name === 'Main')
@@ -22,6 +22,8 @@ const SettingsScreen = ({navigation}) => {
 
   const showFontModalHandler = () => setShowFontModal(true);
   const hideFontModalHandler = () => setShowFontModal(false);
+  const showNotfModalHandler = () => setShowNotfModal(true);
+  const hideNotfModalHandler = () => setShowNotfModal(false);
   const changeFontHandler = font => setFontFamily(font);
 
   // Notifications
@@ -29,22 +31,17 @@ const SettingsScreen = ({navigation}) => {
     onRegister: function(token) {
       console.log('TOKEN:', token);
     },
-
     onNotification: function(notification) {
       console.log('NOTIFICATION:', notification);
       notification.finish(PushNotificationIOS.FetchResult.NoData);
     },
-
     senderID: 'YOUR FCM SENDER ID',
-
     permissions: {
       alert: true,
       badge: true,
       sound: true,
     },
-
     popInitialNotification: true,
-
     requestPermissions: true,
   });
 
@@ -52,9 +49,13 @@ const SettingsScreen = ({navigation}) => {
     PushNotification.localNotificationSchedule({
       title: 'Irregular Verbs', // (optional)
       message: 'Learn Irregular Verbs', // (required)
-      date: new Date(Date.now() + 10 * 1000), // in 60 secs
+      date: new Date(Date.now() + 50 * 1000), // in 60 secs
     });
   };
+
+  useEffect(() => {
+    testPush();
+  }, [notfInterval]);
 
   return (
     <View style={styles.container}>
@@ -63,11 +64,24 @@ const SettingsScreen = ({navigation}) => {
         closeModal={hideFontModalHandler}
         changeFont={changeFontHandler}
       />
+      <NotificationModal
+        setNotfInterval={setNotfInterval}
+        visible={showNotfModal}
+        closeModal={hideNotfModalHandler}
+      />
       <Text style={styles.title}>Appearance</Text>
       <TouchableOpacity onPress={showFontModalHandler}>
-        <View style={styles.fontFamilyCon}>
-          <Text style={styles.fontFamilyTitle}>Verbs Font</Text>
-          <Text style={styles.fontFamily}>{fontFamily}</Text>
+        <View style={styles.infoContainer}>
+          <Text style={styles.subtitle}>Verbs Font</Text>
+          <Text style={styles.description}>{fontFamily}</Text>
+        </View>
+      </TouchableOpacity>
+      <Divider />
+      <Text style={styles.title}>Notifications</Text>
+      <TouchableOpacity onPress={showNotfModalHandler}>
+        <View style={styles.infoContainer}>
+          <Text style={styles.subtitle}>Notifications Interval</Text>
+          <Text style={styles.description}>{notfInterval} hour(s)</Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -78,23 +92,23 @@ export default SettingsScreen;
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: 20,
     paddingTop: 20,
   },
   title: {
     color: Colors.highRed,
     fontSize: 17,
     fontWeight: 'bold',
-  },
-  fontFamilyCon: {
     marginLeft: 20,
-    marginTop: 10,
   },
-  fontFamilyTitle: {
+  infoContainer: {
+    marginLeft: 20,
+    marginVertical: 10,
+  },
+  subtitle: {
     fontSize: 20,
     fontWeight: 'bold',
   },
-  fontFamily: {
+  description: {
     color: 'grey',
   },
 });
