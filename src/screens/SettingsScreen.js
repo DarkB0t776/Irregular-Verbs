@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {useNavigationState} from '@react-navigation/native';
+import {useNavigationState, CommonActions} from '@react-navigation/native';
 import Colors from '../constants/Colors';
 import FontFamilyModal from '../components/modals/FontFamilyModal';
 import DefaultStackHeader from '../components/headers/DefaultStackHeader';
@@ -8,20 +8,21 @@ import DefaultStackHeader from '../components/headers/DefaultStackHeader';
 let PushNotification = require('react-native-push-notification');
 const SettingsScreen = ({navigation}) => {
   const [showFontModal, setShowFontModal] = useState(false);
-  const [fontFamily, setFontFamily] = useState('Android Standard');
+  // const [fontFamily, setFontFamily] = useState('Android Standard');
   const state = useNavigationState(state => state);
 
-  console.log(state);
+  // console.log(state);
+
+  const fontFamily = state.routes
+    .find(r => r.name === 'Main')
+    .state.routes.find(r => r.name === 'Verbs').params.fontFamily;
+  const setFontFamily = state.routes
+    .find(r => r.name === 'Main')
+    .state.routes.find(r => r.name === 'Verbs').params.setFontFamily;
 
   const showFontModalHandler = () => setShowFontModal(true);
   const hideFontModalHandler = () => setShowFontModal(false);
   const changeFontHandler = font => setFontFamily(font);
-
-  useEffect(() => {
-    navigation.setParams({
-      fontFamily,
-    });
-  }, [fontFamily]);
 
   // Notifications
   PushNotification.configure({
@@ -54,13 +55,6 @@ const SettingsScreen = ({navigation}) => {
       date: new Date(Date.now() + 10 * 1000), // in 60 secs
     });
   };
-
-  //Custom Header
-  navigation.setOptions({
-    header: props => (
-      <DefaultStackHeader {...props} screenName="Settings" settings />
-    ),
-  });
 
   return (
     <View style={styles.container}>

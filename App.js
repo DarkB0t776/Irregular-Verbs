@@ -39,7 +39,6 @@ const Stack = ({navigation}) => (
     />
     <MainStack.Screen name="Exam" component={ExamScreen} />
     <MainStack.Screen name="Cards" component={CardsScreen} />
-    <MainStack.Screen name="Settings" component={SettingsScreen} />
   </MainStack.Navigator>
 );
 

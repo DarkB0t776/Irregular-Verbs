@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View, FlatList, TouchableOpacity} from 'react-native';
 import Colors from '../constants/Colors';
 
-const VerbsList = ({data, showModal, fontSize}) => {
+const VerbsList = ({data, showModal, fontSize, font}) => {
   const styles = StyleSheet.create({
     listContainer: {
       flexDirection: 'row',
@@ -11,6 +11,7 @@ const VerbsList = ({data, showModal, fontSize}) => {
     },
     listItem: {
       fontSize: fontSize,
+      fontFamily: font,
     },
     translateContainer: {
       flexDirection: 'row',
@@ -49,9 +50,6 @@ const VerbsList = ({data, showModal, fontSize}) => {
       />
     </View>
   );
-
 };
 
 export default VerbsList;
-
-

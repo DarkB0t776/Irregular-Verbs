@@ -8,20 +8,26 @@ import SortModal from '../components/modals/SortModal';
 import FontSizeModal from '../components/modals/FontSizeModal';
 import {useNavigation} from '@react-navigation/native';
 
-const VerbsScreen = () => {
+const VerbsScreen = ({route}) => {
   const [verbs, setVerbs] = useState([]);
   const [showWordModal, setShowWordModal] = useState(false);
   const [selectedWord, setSelectedWord] = useState({});
   const [showSortModal, setShowSortModal] = useState(false);
   const [showFontModal, setShowFontModal] = useState(false);
   const [fontSize, setFontSize] = useState(15);
+  const [fontFamily, setFontFamily] = useState('Android Standard');
   const navigation = useNavigation();
-
-
 
   useEffect(() => {
     setVerbs(verbsData);
   }, []);
+
+  useEffect(() => {
+    navigation.setParams({
+      fontFamily,
+      setFontFamily,
+    });
+  }, [fontFamily]);
 
   useEffect(() => {
     navigation.setParams({
@@ -135,6 +141,7 @@ const VerbsScreen = () => {
         data={verbs}
         showModal={showWordModalHandler}
         fontSize={fontSize}
+        font={fontFamily}
       />
     </View>
   );

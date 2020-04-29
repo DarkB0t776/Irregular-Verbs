@@ -22,11 +22,7 @@ const DefaultStackHeader = ({screenName, navigation, exam, scene}) => {
       });
     }
 
-    if (
-      scene.route.name === 'PracticeAll' ||
-      scene.route.name === 'Exam' ||
-      scene.route.name === 'Settings'
-    ) {
+    if (scene.route.name === 'PracticeAll' || scene.route.name === 'Exam') {
       return navigation.navigate('Main', {screen: 'Verbs'});
     }
     return navigation.navigate('MainPractice', {screen: 'PracticeAll'});

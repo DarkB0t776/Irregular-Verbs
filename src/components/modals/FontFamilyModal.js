@@ -32,7 +32,7 @@ const FontFamilyModal = ({visible, closeModal, changeFont}) => {
             uncheckedIcon="circle-o"
             checkedColor={Colors.highRed}
             onPress={() => {
-              changeFont('Gel Pen');
+              changeFont('GelPen');
               toggleChecked('gel');
             }}
             checked={checked.gel}

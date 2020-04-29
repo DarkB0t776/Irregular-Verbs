@@ -41,10 +41,7 @@ const DrawerMenuList = ({navigation, state}) => {
           <Text style={styles.text}>Flash Cards</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('MainPractice', {screen: 'Settings'})
-        }>
+      <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
         <View style={styles.itemContainer}>
           <SettingsIcon name="settings" style={styles.text} />
           <Text style={styles.text}>Settings</Text>
