@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {
@@ -7,6 +7,7 @@ import {
 } from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import SplashScreen from 'react-native-splash-screen';
 import VerbsScreen from './src/screens/VerbsScreen';
 import FavoriteScreen from './src/screens/FavoriteScreen';
 import PracticeScreen from './src/screens/PracticeScreen';
@@ -63,6 +64,9 @@ const CustomDrawerContent = props => {
 };
 
 const App = props => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
     <NavigationContainer>
       <Drawer.Navigator
