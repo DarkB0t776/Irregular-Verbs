@@ -35,8 +35,9 @@ const VerbsScreen = () => {
     navigation.setParams({
       fontFamily,
       setFontFamily,
+      fontSize,
     });
-  }, [fontFamily]);
+  }, [fontFamily, fontSize]);
 
   useEffect(() => {
     navigation.setParams({

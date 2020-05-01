@@ -7,6 +7,9 @@ import VerbsList from '../components/VerbsList';
 const FavoriteScreen = () => {
   const state = useNavigationState(state => state);
   const words = state?.routes.find(r => r.name === 'Verbs').params.words;
+  const fontFamily = state?.routes.find(r => r.name === 'Verbs').params
+    .fontFamily;
+  const fontSize = state?.routes.find(r => r.name === 'Verbs').params.fontSize;
 
   const [favoriteWords, setFavoriteWords] = useState([]);
 
@@ -23,7 +26,7 @@ const FavoriteScreen = () => {
   return (
     <View style={styles.container}>
       <FormsTitle />
-      <VerbsList data={favoriteWords} />
+      <VerbsList data={favoriteWords} font={fontFamily} fontSize={fontSize} />
     </View>
   );
 };
