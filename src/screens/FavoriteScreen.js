@@ -1,10 +1,29 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import {useNavigationState} from '@react-navigation/native';
 import {StyleSheet, Text, View} from 'react-native';
+import FormsTitle from '../components/FormsTitle';
+import VerbsList from '../components/VerbsList';
 
 const FavoriteScreen = () => {
+  const state = useNavigationState(state => state);
+  const words = state?.routes.find(r => r.name === 'Verbs').params.words;
+
+  const [favoriteWords, setFavoriteWords] = useState([]);
+
+  useEffect(() => {
+    if (state) {
+      const favWords = state.routes
+        .find(r => r.name === 'Verbs')
+        .params.words.filter(w => w.stars === 3);
+      setFavoriteWords(favWords);
+    }
+  }, [words]);
+
+  console.log(state);
   return (
-    <View>
-      <Text>FavoriteScreen</Text>
+    <View style={styles.container}>
+      <FormsTitle />
+      <VerbsList data={favoriteWords} />
     </View>
   );
 };
