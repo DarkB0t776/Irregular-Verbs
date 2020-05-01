@@ -8,18 +8,27 @@ import SortModal from '../components/modals/SortModal';
 import FontSizeModal from '../components/modals/FontSizeModal';
 import {useNavigation} from '@react-navigation/native';
 
-const VerbsScreen = ({route}) => {
+const VerbsScreen = () => {
   const [verbs, setVerbs] = useState([]);
   const [showWordModal, setShowWordModal] = useState(false);
   const [selectedWord, setSelectedWord] = useState({});
   const [showSortModal, setShowSortModal] = useState(false);
   const [showFontModal, setShowFontModal] = useState(false);
+  const [searchedWords, setSearchedWords] = useState([]);
+  const [term, setTerm] = useState('');
   const [fontSize, setFontSize] = useState(15);
   const [fontFamily, setFontFamily] = useState('Android Standard');
   const navigation = useNavigation();
 
   useEffect(() => {
+    navigation.setParams({
+      onSearchHandler,
+    });
+  }, [searchedWords]);
+
+  useEffect(() => {
     setVerbs(verbsData);
+    setSearchedWords(verbsData);
   }, []);
 
   useEffect(() => {
@@ -38,6 +47,13 @@ const VerbsScreen = ({route}) => {
       showFontModal: showFontSizeModalHandler,
     });
   }, [verbs]);
+
+  //Search handler
+  const onSearchHandler = words => {
+    setSearchedWords(words);
+  };
+
+  console.log(term);
 
   //Modal Handlers
   const showWordModalHandler = word => {
@@ -138,7 +154,7 @@ const VerbsScreen = ({route}) => {
       {fontSizeModal}
       <FormsTitle />
       <VerbsList
-        data={verbs}
+        data={searchedWords}
         showModal={showWordModalHandler}
         fontSize={fontSize}
         font={fontFamily}

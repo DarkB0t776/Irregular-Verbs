@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {useNavigationState, CommonActions} from '@react-navigation/native';
+import {useNavigationState} from '@react-navigation/native';
 import Colors from '../constants/Colors';
 import FontFamilyModal from '../components/modals/FontFamilyModal';
 import NotificationModal from '../components/modals/NotificationModal';
@@ -10,6 +10,7 @@ let PushNotification = require('react-native-push-notification');
 const SettingsScreen = () => {
   const [showFontModal, setShowFontModal] = useState(false);
   const [showNotfModal, setShowNotfModal] = useState(false);
+  const [enableNotifications, setEnableNotifications] = useState(true);
   const [notfInterval, setNotfInterval] = useState(24);
   const state = useNavigationState(state => state);
 
@@ -49,13 +50,16 @@ const SettingsScreen = () => {
     PushNotification.localNotificationSchedule({
       title: 'Irregular Verbs', // (optional)
       message: 'Learn Irregular Verbs', // (required)
-      date: new Date(Date.now() + 50 * 1000), // in 60 secs
+      date: new Date(Date.now() + notfInterval * 60 * 60 * 1000), // in 60 secs
     });
   };
 
   useEffect(() => {
-    testPush();
-  }, [notfInterval]);
+    if (enableNotifications) {
+      testPush();
+      console.log('Hello');
+    }
+  });
 
   return (
     <View style={styles.container}>
@@ -78,6 +82,21 @@ const SettingsScreen = () => {
       </TouchableOpacity>
       <Divider />
       <Text style={styles.title}>Notifications</Text>
+      <View style={styles.infoContainer}>
+        <CheckBox
+          title="Enable Notifications"
+          iconRight
+          checked={enableNotifications}
+          containerStyle={styles.checkboxContainer}
+          textStyle={styles.checkboxText}
+          onPress={() => setEnableNotifications(!enableNotifications)}
+        />
+        {enableNotifications ? (
+          <Text style={styles.description}>Yes</Text>
+        ) : (
+          <Text style={styles.description}>No</Text>
+        )}
+      </View>
       <TouchableOpacity onPress={showNotfModalHandler}>
         <View style={styles.infoContainer}>
           <Text style={styles.subtitle}>Notifications Interval</Text>
@@ -110,5 +129,18 @@ const styles = StyleSheet.create({
   },
   description: {
     color: 'grey',
+  },
+  checkboxContainer: {
+    backgroundColor: 'transparent',
+    marginLeft: 0,
+    paddingLeft: 0,
+    paddingVertical: 0,
+    borderWidth: 0,
+  },
+  checkboxText: {
+    fontSize: 20,
+    color: 'black',
+    marginLeft: 0,
+    marginRight: 30,
   },
 });

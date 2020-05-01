@@ -1,21 +1,51 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import React, {useState, useRef, useEffect} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  TextInput,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Fontisto';
 import MenuIcon from 'react-native-vector-icons/Entypo';
 import SchoolIcon from 'react-native-vector-icons/Ionicons';
 import PracticeModal from '../modals/PracticeModal';
 import MaterialTabs from 'react-native-material-tabs';
+import CloseIcon from 'react-native-vector-icons/AntDesign';
 
 const SCREEN_NAMES = ['Verbs', 'Favorite', 'Practice'];
 
 const Header = ({navigation, state}) => {
   const [modal, setModal] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const [term, setTerm] = useState('');
+  const searchRef = useRef();
   let words = [];
   let setWords = null;
+  let onSearchHandler = null;
+
+  useEffect(() => {
+    searchRef.current?.focus();
+  });
+
+  useEffect(() => {
+    if (onSearchHandler) {
+      onSearchHandler(
+        words?.filter(
+          word =>
+            word.infinitive.word.includes(term) ||
+            word.pastSimple.word.includes(term) ||
+            word.pastPart.word.includes(term),
+        ),
+      );
+    }
+  }, [term]);
 
   if (state) {
     words = state.routes.find(r => r.name === 'Verbs').params?.words;
     setWords = state.routes.find(r => r.name === 'Verbs').params?.setWords;
+    onSearchHandler = state.routes.find(r => r.name === 'Verbs').params
+      ?.onSearchHandler;
   }
 
   const showModal = () => {
@@ -26,6 +56,42 @@ const Header = ({navigation, state}) => {
     setModal(false);
     setModal(false);
   };
+
+  let mainSection = (
+    <>
+      <Text style={styles.title}>COLOR VERBS</Text>
+      <TouchableOpacity onPress={() => setShowSearch(true)}>
+        <Icon name="search" style={styles.searchIcon} />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={showModal}>
+        <SchoolIcon name="md-school" style={styles.schoolIcon} />
+      </TouchableOpacity>
+    </>
+  );
+
+  console.log(term);
+
+  if (showSearch) {
+    mainSection = (
+      <>
+        <TextInput
+          style={styles.search}
+          autoCapitalize="none"
+          value={term}
+          onChangeText={setTerm}
+          placeholder="Search..."
+          ref={searchRef}
+        />
+        <TouchableOpacity
+          onPress={() => {
+            setShowSearch(false);
+            setTerm('');
+          }}>
+          <CloseIcon name="close" style={styles.closeIcon} />
+        </TouchableOpacity>
+      </>
+    );
+  }
 
   return (
     <View style={styles.header}>
@@ -40,11 +106,7 @@ const Header = ({navigation, state}) => {
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <MenuIcon name="menu" style={styles.menuIcon} />
         </TouchableOpacity>
-        <Text style={styles.title}>COLOR VERBS</Text>
-        <Icon name="search" style={styles.searchIcon} />
-        <TouchableOpacity onPress={showModal}>
-          <SchoolIcon name="md-school" style={styles.schoolIcon} />
-        </TouchableOpacity>
+        {mainSection}
       </View>
       <View>
         <MaterialTabs
@@ -52,7 +114,7 @@ const Header = ({navigation, state}) => {
           selectedIndex={state.index}
           barColor="red"
           indicatorColor="#fff"
-          onChange={(index) => {
+          onChange={index => {
             navigation.navigate(SCREEN_NAMES[index]);
           }}
         />
@@ -85,6 +147,17 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 30,
   },
+  search: {
+    width: '70%',
+    fontSize: 15,
+    backgroundColor: 'transparent',
+    borderRadius: 5,
+    marginRight: 0,
+  },
+  closeIcon: {
+    fontSize: 25,
+    color: 'white',
+  },
   schoolIcon: {
     color: 'white',
     fontSize: 30,
@@ -110,5 +183,5 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
-  }
+  },
 });
