@@ -5,12 +5,13 @@ import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 // Other
 import ArrowLeft from 'react-native-vector-icons/AntDesign';
 
-const DefaultStackHeader = ({ screenName, navigation, exam, scene }) => {
+const DefaultStackHeader = ({ screenName, navigation, exam, scene, setWords }) => {
   const words = scene.route.params ? scene.route.params.words : null;
-  const setWords = scene.route.params ? scene.route.params.setWords : null;
   const setPercentage = scene.route.params
     ? scene.route.params.setPercentage
     : null;
+
+  console.log(scene);
 
   //Handle navigation
   const navigationHandler = () => {

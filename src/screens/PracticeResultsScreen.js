@@ -20,11 +20,11 @@ const PracticeResultsScreen = ({ route, navigation }) => {
   const [selectedWord, setSelectedWord] = useState({});
   const [modal, setModal] = useState(false);
   const [percentage, setPercentage] = useState(null);
+  const [right, setRight] = useState(0);
+  const [wrong, setWrong] = useState(0);
+  const [skipped, setSkipped] = useState(0);
 
 
-  let right = 0;
-  let wrong = 0;
-  let skipped = 0;
   const rightWords = [];
 
   useEffect(() => {
@@ -32,8 +32,8 @@ const PracticeResultsScreen = ({ route, navigation }) => {
   });
 
   useEffect(() => {
-    if (exam) setPercentage((rightWords.length / words.length).toFixed(2) * 100);
     calculateScore();
+    setPercentage((rightWords.length / words.length).toFixed(2) * 100);
   }, []);
 
 
@@ -46,7 +46,7 @@ const PracticeResultsScreen = ({ route, navigation }) => {
     for (const [idx, word] of words.entries()) {
       let newWords = [...words];
       if (word.skipped) {
-        skipped += 1;
+        setSkipped(prev => prev + 1);
       }
       if (
         word.infinitive.wrong === 0 &&
@@ -66,7 +66,7 @@ const PracticeResultsScreen = ({ route, navigation }) => {
           });
           return [...newArr];
         });
-        right += 1;
+        setRight(prev => prev + 1);
       }
       if (
         (word.infinitive.wrong !== 0 ||
@@ -85,7 +85,7 @@ const PracticeResultsScreen = ({ route, navigation }) => {
           });
           return [...newArr];
         });
-        wrong += 1;
+        setWrong(prev => prev + 1);
       }
     }
   }
@@ -119,7 +119,7 @@ const PracticeResultsScreen = ({ route, navigation }) => {
 
   // Custom Header
   navigation.setOptions({
-    header: props => <DefaultStackHeader {...props} screenName="Results" exam={exam} />
+    header: props => <DefaultStackHeader {...props} screenName="Results" exam={exam} setWords={setWords} />
   });
 
   return (
