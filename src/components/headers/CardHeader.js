@@ -20,8 +20,6 @@ import MaterialTabs from 'react-native-material-tabs';
 
 const CardHeader = ({
   showSectionHandler,
-  onPlayLoop,
-  playLoop,
   term,
   onSearchHandler,
   words,
@@ -48,10 +46,7 @@ const CardHeader = ({
     let i = 0;
     return mapSeries(sounds, (item, callback) => {
       const soundIdx = sounds.indexOf(item);
-
       item.play(success => {
-        console.log(`i - ${i}, wordsLength - ${wordsLength}`);
-
         if ((soundIdx + 1) % 3 === 0) {
           if (i === wordsLength) return;
           setIdx(prevIdx => prevIdx + 1);
@@ -75,7 +70,7 @@ const CardHeader = ({
       </TouchableOpacity>
       <TouchableOpacity
         onPress={async () => {
-          onPlayLoop();
+          if (idx === wordsLength) setIdx(0);
           await playSounds();
         }}>
         <PlayIcon name="play-circle-outline" style={styles.playIcon} />
