@@ -1,6 +1,9 @@
-import React, {useEffect} from 'react';
-import {StyleSheet, ImageBackground} from 'react-native';
-import {useRoute, useNavigation} from '@react-navigation/native';
+// Core
+import React, { useEffect } from 'react';
+import { StyleSheet, ImageBackground } from 'react-native';
+import { useRoute, useNavigation } from '@react-navigation/native';
+
+// Components
 import WordsLabel from '../components/WordsLabel';
 import DefaultStackHeader from '../components/headers/DefaultStackHeader';
 
@@ -51,7 +54,7 @@ const PracticeAllScreen = () => {
       <WordsLabel
         title="Blue Words"
         words={blueWords}
-        style={{backgroundColor: '#76D3F5'}}
+        style={{ backgroundColor: '#76D3F5' }}
         setWords={setWords}
         navigation={navigation}
         practice={practice}
@@ -60,7 +63,7 @@ const PracticeAllScreen = () => {
       <WordsLabel
         title="Yellow Words"
         words={yellowWords}
-        style={{backgroundColor: '#F7D257'}}
+        style={{ backgroundColor: '#F7D257' }}
         setWords={setWords}
         navigation={navigation}
         practice={practice}
@@ -69,7 +72,7 @@ const PracticeAllScreen = () => {
       <WordsLabel
         title="Green Words"
         words={greenWords}
-        style={{backgroundColor: '#63E244'}}
+        style={{ backgroundColor: '#63E244' }}
         setWords={setWords}
         navigation={navigation}
         practice={practice}
@@ -78,7 +81,7 @@ const PracticeAllScreen = () => {
       <WordsLabel
         title="Red Words"
         words={redWords}
-        style={{backgroundColor: '#F55757'}}
+        style={{ backgroundColor: '#F55757' }}
         setWords={setWords}
         navigation={navigation}
         practice={practice}

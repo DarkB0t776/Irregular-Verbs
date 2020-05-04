@@ -1,10 +1,15 @@
+// Core
 import React from 'react';
-import {Text, View, Modal, TouchableOpacity, StyleSheet} from 'react-native';
+import { Text, View, Modal, TouchableOpacity, StyleSheet } from 'react-native';
+
+// Constants
 import Colors from '../../constants/Colors';
+
+// Other
 import PlusIcon from 'react-native-vector-icons/AntDesign';
 import MinusIcon from 'react-native-vector-icons/AntDesign';
 
-const FontSizeModal = ({visible, fontSize, increase, decrease, closeModal}) => {
+const FontSizeModal = ({ visible, fontSize, increase, decrease, closeModal }) => {
   return (
     <Modal visible={visible} transparent onRequestClose={closeModal}>
       <View style={styles.backdrop}>

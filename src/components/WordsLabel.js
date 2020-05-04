@@ -1,5 +1,6 @@
+// Core
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 const WordsLabel = props => {
   const doneWords = props.words.filter(word => word.stars === 3);
@@ -17,7 +18,7 @@ const WordsLabel = props => {
           return;
         }
       }}>
-      <View style={{...styles.container, ...props.style}}>
+      <View style={{ ...styles.container, ...props.style }}>
         <Text style={styles.text}>{props.title}</Text>
         <Text style={styles.text}>
           {doneWords.length}/{props.words.length}

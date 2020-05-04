@@ -1,13 +1,15 @@
-import React, {useEffect} from 'react';
-import {StyleSheet} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+// Core
+import React, { useEffect } from 'react';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
-import {createStackNavigator} from '@react-navigation/stack';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import SplashScreen from 'react-native-splash-screen';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+// Screens
 import VerbsScreen from './src/screens/VerbsScreen';
 import FavoriteScreen from './src/screens/FavoriteScreen';
 import PracticeScreen from './src/screens/PracticeScreen';
@@ -17,20 +19,26 @@ import PracticeWordScreen from './src/screens/PracticeWordScreen';
 import PracticeResultsScreen from './src/screens/PracticeResultsScreen';
 import ExamScreen from './src/screens/ExamScreen';
 import CardsScreen from './src/screens/CardsScreen';
+
+// Components
 import Header from './src/components/headers/Header';
 import DrawerMenuList from './src/components/DrawerMenuList';
+
+// Other
+import SplashScreen from 'react-native-splash-screen';
+
 
 const Drawer = createDrawerNavigator();
 // const PracticeStack = createStackNavigator();
 const MainStack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
 
-const Stack = ({navigation}) => (
+const Stack = ({ navigation }) => (
   <MainStack.Navigator>
     <MainStack.Screen
       name="Practice"
       component={PracticeScreen}
-      options={{header: () => null}}
+      options={{ header: () => null }}
     />
     <MainStack.Screen name="PracticeAll" component={PracticeAllScreen} />
     <MainStack.Screen name="PracticeWord" component={PracticeWordScreen} />
@@ -73,11 +81,11 @@ const App = props => {
         initialRouteName="Main"
         drawerStyle={styles.drawerMenu}
         drawerContent={CustomDrawerContent}
-        drawerContentOptions={{inactiveTintColor: 'white'}}>
+        drawerContentOptions={{ inactiveTintColor: 'white' }}>
         <Drawer.Screen
           name="MainPractice"
           component={Stack}
-          options={{gestureEnabled: false}}
+          options={{ gestureEnabled: false }}
         />
         <Drawer.Screen name="Settings" component={SettingsScreen} />
         <Drawer.Screen name="Main" component={Main} />

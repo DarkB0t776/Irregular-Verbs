@@ -1,10 +1,13 @@
+// Core
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
+
+// Other
 import StarIcon from 'react-native-vector-icons/Entypo';
 
 const Star = props => {
   const star = (
-    <StarIcon name={props.name} style={{...styles.star, ...props.style}} />
+    <StarIcon name={props.name} style={{ ...styles.star, ...props.style }} />
   );
 
   return <>{star}</>;

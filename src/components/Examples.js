@@ -1,11 +1,14 @@
+// Core
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+
+// Constants
 import Colors from '../constants/Colors';
 
 const Definition = props => {
   return (
     <>
-      <Text style={{...styles.example, ...props.style}}>Приклади:</Text>
+      <Text style={{ ...styles.example, ...props.style }}>Приклади:</Text>
       <Text>{props.examples.join(' ')}</Text>
     </>
   );

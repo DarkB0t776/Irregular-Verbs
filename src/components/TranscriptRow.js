@@ -1,8 +1,11 @@
+// Core
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+
+// Constants
 import Fonts from '../constants/Fonts';
 
-const TranscriptRow = ({word}) => {
+const TranscriptRow = ({ word }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.transcript}>{word.infinitive.transcript}</Text>

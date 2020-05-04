@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
-import {View, Modal, StyleSheet, TouchableOpacity} from 'react-native';
-import {CheckBox, Text} from 'react-native-elements';
+// Core
+import React, { useState } from 'react';
+import { View, Modal, StyleSheet, TouchableOpacity } from 'react-native';
+// Constants
 import Colors from '../../constants/Colors';
 
-const FontFamilyModal = ({visible, closeModal, setNotfInterval}) => {
+// Other
+import { CheckBox, Text } from 'react-native-elements';
+
+const FontFamilyModal = ({ visible, closeModal, setNotfInterval }) => {
   const [checked, setChecked] = useState({
     one: false,
     two: false,

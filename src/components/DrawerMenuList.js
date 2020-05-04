@@ -1,11 +1,14 @@
+// Core
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+
+// Other
 import CardIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SettingsIcon from 'react-native-vector-icons/Feather';
 import SortIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontSizeIcon from 'react-native-vector-icons/Octicons';
 
-const DrawerMenuList = ({navigation, state}) => {
+const DrawerMenuList = ({ navigation, state }) => {
   let showSortModal = null;
   let showFontModal = null;
   let changeColor = null;

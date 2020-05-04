@@ -1,13 +1,15 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {useNavigation} from '@react-navigation/native';
+// Core
+import React, { useState, useRef, useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   TextInput,
-  FlatList,
 } from 'react-native';
+
+// Other
 import mapSeries from 'async/mapSeries';
 import ArrowLeft from 'react-native-vector-icons/AntDesign';
 import SearchIcon from 'react-native-vector-icons/Fontisto';
@@ -103,7 +105,7 @@ const CardHeader = ({
     <View style={styles.header}>
       <View style={styles.container}>
         <View style={styles.leftSection}>
-          <TouchableOpacity onPress={() => navigation.navigate('Main', {screen: 'Verbs'})}>
+          <TouchableOpacity onPress={() => navigation.navigate('Main', { screen: 'Verbs' })}>
             <ArrowLeft name="arrowleft" style={styles.arrowLeft} />
           </TouchableOpacity>
           <Text style={styles.title}>Cards</Text>

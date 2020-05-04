@@ -1,11 +1,14 @@
+// Core
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text } from 'react-native';
+
+// Constants
 import Colors from '../constants/Colors';
 
 const Definition = props => {
   return (
     <>
-      <Text style={{...styles.definition, ...props.style}}>Визначення:</Text>
+      <Text style={{ ...styles.definition, ...props.style }}>Визначення:</Text>
       <Text>{props.definition}</Text>
     </>
   );

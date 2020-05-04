@@ -1,12 +1,15 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, View} from 'react-native';
+// Core
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
+// Components
 import FormsTitle from '../components/FormsTitle';
 import verbsData from '../../database/verbs';
 import VerbsList from '../components/VerbsList';
 import MyModal from '../components/modals/Mymodal';
 import SortModal from '../components/modals/SortModal';
 import FontSizeModal from '../components/modals/FontSizeModal';
-import {useNavigation} from '@react-navigation/native';
 
 const VerbsScreen = () => {
   const [verbs, setVerbs] = useState([]);
@@ -15,7 +18,6 @@ const VerbsScreen = () => {
   const [showSortModal, setShowSortModal] = useState(false);
   const [showFontModal, setShowFontModal] = useState(false);
   const [searchedWords, setSearchedWords] = useState([]);
-  const [term, setTerm] = useState('');
   const [fontSize, setFontSize] = useState(15);
   const [fontFamily, setFontFamily] = useState('Android Standard');
   const navigation = useNavigation();
@@ -54,7 +56,6 @@ const VerbsScreen = () => {
     setSearchedWords(words);
   };
 
-  console.log(term);
 
   //Modal Handlers
   const showWordModalHandler = word => {
@@ -77,7 +78,7 @@ const VerbsScreen = () => {
 
   // Sort Handlers
   const alphabeticalSort = () => {
-    const sortedWords = verbs.sort((a, b) => {
+    const sortedWords = searchedWords.sort((a, b) => {
       const wordA = a.infinitive.word.toUpperCase();
       const wordB = b.infinitive.word.toUpperCase();
       if (wordA < wordB) return -1;
@@ -85,11 +86,11 @@ const VerbsScreen = () => {
 
       return 0;
     });
-    setVerbs(sortedWords);
+    setSearchedWords(sortedWords);
   };
 
   const colorSort = () => {
-    const sortedWords = verbs.sort((a, b) => {
+    const sortedWords = searchedWords.sort((a, b) => {
       const wordA = a.color.toUpperCase();
       const wordB = b.color.toUpperCase();
       if (wordA < wordB) return -1;
@@ -97,7 +98,7 @@ const VerbsScreen = () => {
 
       return 0;
     });
-    setVerbs(sortedWords);
+    setSearchedWords(sortedWords);
   };
 
   const sortList = {

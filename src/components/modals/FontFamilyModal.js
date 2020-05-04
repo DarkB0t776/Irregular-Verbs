@@ -1,18 +1,23 @@
-import React, {useState} from 'react';
-import {View, Modal, StyleSheet, TouchableOpacity} from 'react-native';
-import {CheckBox, Text} from 'react-native-elements';
+// Core
+import React, { useState } from 'react';
+import { View, Modal, StyleSheet, TouchableOpacity } from 'react-native';
+
+// Constants
 import Colors from '../../constants/Colors';
 
-const FontFamilyModal = ({visible, closeModal, changeFont}) => {
-  const [checked, setChecked] = useState({gel: false, standard: true});
+// Other
+import { CheckBox, Text } from 'react-native-elements';
+
+const FontFamilyModal = ({ visible, closeModal, changeFont }) => {
+  const [checked, setChecked] = useState({ gel: false, standard: true });
 
   const toggleChecked = type => {
     switch (type) {
       case 'standard':
-        setChecked({gel: false, standard: true});
+        setChecked({ gel: false, standard: true });
         break;
       case 'gel':
-        setChecked({gel: true, standard: false});
+        setChecked({ gel: true, standard: false });
         break;
       default:
         return;

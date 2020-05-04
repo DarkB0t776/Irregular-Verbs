@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+// Core
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
-const Grade = ({percentage}) => {
+const Grade = ({ percentage }) => {
   let grade = null;
   if (percentage >= 90) {
     grade = <Text style={styles.grade}>A</Text>;

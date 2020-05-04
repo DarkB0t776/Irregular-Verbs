@@ -1,8 +1,11 @@
+// Core
 import React from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
+
+// Components
 import SingleCharButton from './SingleCharButton';
 
-const CharButtons = ({chars, skip, onPress, hideNextBtn}) => {
+const CharButtons = ({ chars, skip, onPress, hideNextBtn }) => {
   const buttons = chars.map(char => {
     return (
       <TouchableOpacity key={Math.random()} onPress={() => onPress(char)}>

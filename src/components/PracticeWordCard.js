@@ -1,12 +1,19 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+// Core
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+
+// Constants
 import Images from '../constants/Images';
 import Colors from '../constants/Colors';
+
+// Components
 import MyModal from './modals/Mymodal';
-import QuestionIcon from 'react-native-vector-icons/AntDesign';
 import PracticeInput from '../components/PracticeInput';
 import HiddenWord from '../components/HiddenWord';
 import Star from '../components/Star';
+
+// Other
+import QuestionIcon from 'react-native-vector-icons/AntDesign';
 
 const PracticeWordCard = props => {
   let imageSrc;
@@ -37,16 +44,16 @@ const PracticeWordCard = props => {
   if (props.practice) {
     const changeStar = () => {
       if (props.word.stars === 1) {
-        star1 = <Star name="star" style={{color: Colors.mainGreen}} key="1" />;
+        star1 = <Star name="star" style={{ color: Colors.mainGreen }} key="1" />;
       }
       if (props.word.stars === 2) {
-        star2 = <Star name="star" style={{color: Colors.mainGreen}} key="2" />;
-        star1 = <Star name="star" style={{color: Colors.mainGreen}} key="1" />;
+        star2 = <Star name="star" style={{ color: Colors.mainGreen }} key="2" />;
+        star1 = <Star name="star" style={{ color: Colors.mainGreen }} key="1" />;
       }
       if (props.word.stars === 3) {
-        star3 = <Star name="star" style={{color: Colors.mainGreen}} key="3" />;
-        star2 = <Star name="star" style={{color: Colors.mainGreen}} key="2" />;
-        star1 = <Star name="star" style={{color: Colors.mainGreen}} key="1" />;
+        star3 = <Star name="star" style={{ color: Colors.mainGreen }} key="3" />;
+        star2 = <Star name="star" style={{ color: Colors.mainGreen }} key="2" />;
+        star1 = <Star name="star" style={{ color: Colors.mainGreen }} key="1" />;
       }
     };
 

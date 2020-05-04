@@ -1,5 +1,8 @@
+// Core
 import React from 'react';
-import {StyleSheet, Text, View, TextInput} from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
+
+// Other
 import Dash from 'react-native-dash';
 
 const PracticeInput = props => {
@@ -14,7 +17,7 @@ const PracticeInput = props => {
         ref={props.refInput}
       />
       <Dash
-        style={{flexDirection: 'row', width: 25}}
+        style={{ flexDirection: 'row', width: 25 }}
         dashColor="black"
         dashLength={6}
       />

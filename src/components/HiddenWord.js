@@ -1,7 +1,12 @@
+// Core
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import QuestionIcon from 'react-native-vector-icons/AntDesign';
+import { StyleSheet, Text, View } from 'react-native';
+
+// Constants
 import Colors from '../constants/Colors';
+
+// Other
+import QuestionIcon from 'react-native-vector-icons/AntDesign';
 
 const HiddenWord = props => {
   let word = <QuestionIcon name="question" style={styles.icon} />;

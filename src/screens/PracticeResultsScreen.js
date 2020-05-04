@@ -1,13 +1,18 @@
-import React, {useState, useEffect, useFocusEffect} from 'react';
-import {StyleSheet, Text, View, FlatList, TouchableOpacity} from 'react-native';
-import ResultCard from '../components/ResultCard';
+// Core
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+
+// Constants
 import Colors from '../constants/Colors';
+
+// Components
+import ResultCard from '../components/ResultCard';
 import Mymodal from '../components/modals/Mymodal';
 import DefaultStackHeader from '../components/headers/DefaultStackHeader';
 
 
 
-const PracticeResultsScreen = ({route, navigation}) => {
+const PracticeResultsScreen = ({ route, navigation }) => {
   const words = route.params.words;
   const setWords = route.params.setAllWords;
   const exam = route.params.exam;
@@ -16,7 +21,6 @@ const PracticeResultsScreen = ({route, navigation}) => {
   const [modal, setModal] = useState(false);
   const [percentage, setPercentage] = useState(null);
 
-  console.log(route);
 
   let right = 0;
   let wrong = 0;
@@ -28,7 +32,8 @@ const PracticeResultsScreen = ({route, navigation}) => {
   });
 
   useEffect(() => {
-    setPercentage((rightWords.length / words.length).toFixed(2) * 100);
+    if (exam) setPercentage((rightWords.length / words.length).toFixed(2) * 100);
+    calculateScore();
   }, []);
 
 
@@ -36,49 +41,52 @@ const PracticeResultsScreen = ({route, navigation}) => {
     setModal(false);
   };
 
-  for (const [idx, word] of words.entries()) {
-    let newWords = [...words];
-    if (word.skipped) {
-      skipped += 1;
-    }
-    if (
-      word.infinitive.wrong === 0 &&
-      word.pastSimple.wrong === 0 &&
-      word.pastPart.wrong === 0 &&
-      word.skipped === 0
-    ) {
-      rightWords.push(word);
-      newWords[idx].practiced += 1;
-      setWords(prevWords => {
-        const newArr = prevWords.map(item => {
-          if (item.id === newWords[idx].id) {
-            item = newWords[idx];
+
+  const calculateScore = () => {
+    for (const [idx, word] of words.entries()) {
+      let newWords = [...words];
+      if (word.skipped) {
+        skipped += 1;
+      }
+      if (
+        word.infinitive.wrong === 0 &&
+        word.pastSimple.wrong === 0 &&
+        word.pastPart.wrong === 0 &&
+        word.skipped === 0
+      ) {
+        rightWords.push(word);
+        newWords[idx].practiced += 1;
+        setWords(prevWords => {
+          const newArr = prevWords.map(item => {
+            if (item.id === newWords[idx].id) {
+              item = newWords[idx];
+              return item;
+            }
             return item;
-          }
-          return item;
+          });
+          return [...newArr];
         });
-        return [...newArr];
-      });
-      right += 1;
-    }
-    if (
-      (word.infinitive.wrong !== 0 ||
-        word.pastSimple.wrong !== 0 ||
-        word.pastPart.wrong !== 0) &&
-      word.skipped === 0
-    ) {
-      newWords[idx].fail += 1;
-      setWords(prevWords => {
-        const newArr = prevWords.map(item => {
-          if (item.id === newWords[idx].id) {
-            item = newWords[idx];
+        right += 1;
+      }
+      if (
+        (word.infinitive.wrong !== 0 ||
+          word.pastSimple.wrong !== 0 ||
+          word.pastPart.wrong !== 0) &&
+        word.skipped === 0
+      ) {
+        newWords[idx].fail += 1;
+        setWords(prevWords => {
+          const newArr = prevWords.map(item => {
+            if (item.id === newWords[idx].id) {
+              item = newWords[idx];
+              return item;
+            }
             return item;
-          }
-          return item;
+          });
+          return [...newArr];
         });
-        return [...newArr];
-      });
-      wrong += 1;
+        wrong += 1;
+      }
     }
   }
 
@@ -111,7 +119,7 @@ const PracticeResultsScreen = ({route, navigation}) => {
 
   // Custom Header
   navigation.setOptions({
-    header: props => <DefaultStackHeader {...props} screenName="Results" exam={exam}/>
+    header: props => <DefaultStackHeader {...props} screenName="Results" exam={exam} />
   });
 
   return (
@@ -122,7 +130,7 @@ const PracticeResultsScreen = ({route, navigation}) => {
         <FlatList
           data={words}
           keyExtractor={item => item.id}
-          renderItem={({item}) => {
+          renderItem={({ item }) => {
             return (
               <TouchableOpacity
                 onPress={() => {
@@ -133,30 +141,30 @@ const PracticeResultsScreen = ({route, navigation}) => {
                   <View
                     style={
                       item.skipped
-                        ? {backgroundColor: Colors.lightBlue}
+                        ? { backgroundColor: Colors.lightBlue }
                         : item.infinitive.wrong > 0
-                        ? {backgroundColor: 'red'}
-                        : {backgroundColor: Colors.mainGreen}
+                          ? { backgroundColor: 'red' }
+                          : { backgroundColor: Colors.mainGreen }
                     }>
                     <Text style={styles.word}>{item.infinitive.word}</Text>
                   </View>
                   <View
                     style={
                       item.skipped
-                        ? {backgroundColor: Colors.lightBlue}
+                        ? { backgroundColor: Colors.lightBlue }
                         : item.pastSimple.wrong > 0
-                        ? {backgroundColor: 'red'}
-                        : {backgroundColor: Colors.mainGreen}
+                          ? { backgroundColor: 'red' }
+                          : { backgroundColor: Colors.mainGreen }
                     }>
                     <Text style={styles.word}>{item.pastSimple.word}</Text>
                   </View>
                   <View
                     style={
                       item.skipped
-                        ? {backgroundColor: Colors.lightBlue}
+                        ? { backgroundColor: Colors.lightBlue }
                         : item.pastPart.wrong > 0
-                        ? {backgroundColor: 'red'}
-                        : {backgroundColor: Colors.mainGreen}
+                          ? { backgroundColor: 'red' }
+                          : { backgroundColor: Colors.mainGreen }
                     }>
                     <Text style={styles.word}>{item.pastPart.word}</Text>
                   </View>

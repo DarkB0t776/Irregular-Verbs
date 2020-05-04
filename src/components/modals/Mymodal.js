@@ -1,9 +1,12 @@
+// Core
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {StyleSheet, View, Modal} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { StyleSheet, View, Modal } from 'react-native';
+
+// Components
 import Card from '../Card';
 
-const Mymodal = ({hideModal, modalVisible, verb, changeColor, allWords}) => {
+const Mymodal = ({ hideModal, modalVisible, verb, changeColor, allWords }) => {
   const navigation = useNavigation();
 
   return (

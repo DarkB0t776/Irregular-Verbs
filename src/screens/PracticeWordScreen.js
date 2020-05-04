@@ -1,4 +1,5 @@
-import React, {useState, useRef, useEffect} from 'react';
+// Core
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Animated,
   StyleSheet,
@@ -7,10 +8,19 @@ import {
   View,
   Text,
 } from 'react-native';
+
+// Components
 import PracticeWordCard from '../components/PracticeWordCard';
 import CharButtons from '../components/CharButtons';
 import DefaultStackHeader from '../components/headers/DefaultStackHeader';
 
+
+/**
+ * Sort array in random order
+ *
+ * @param {*} arr
+ * @returns
+ */
 const shuffle = arr => {
   let ctr = arr.length,
     temp,
@@ -30,7 +40,7 @@ let done = false;
 let flag = false;
 let needPractice = false;
 
-const PracticeWordScreen = ({route, navigation}) => {
+const PracticeWordScreen = ({ route, navigation }) => {
   const setAllWords = route.params.setWords;
   const [words, setWords] = useState(route.params.words);
   const [wordIdx, setWordIdx] = useState(0);
@@ -217,7 +227,7 @@ const PracticeWordScreen = ({route, navigation}) => {
   );
 
   let footer = (
-    <Animated.View style={{opacity: fadeAnim}}>{buttons}</Animated.View>
+    <Animated.View style={{ opacity: fadeAnim }}>{buttons}</Animated.View>
   );
   if (done && flag && practice) {
     flag = false;

@@ -1,6 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {useNavigationState} from '@react-navigation/native';
-import {StyleSheet, Text, View} from 'react-native';
+// Core
+import React, { useState, useEffect } from 'react';
+import { useNavigationState } from '@react-navigation/native';
+import { StyleSheet, View } from 'react-native';
+
+// Components
 import FormsTitle from '../components/FormsTitle';
 import VerbsList from '../components/VerbsList';
 
@@ -21,8 +24,6 @@ const FavoriteScreen = () => {
       setFavoriteWords(favWords);
     }
   }, [words]);
-
-  console.log(state);
   return (
     <View style={styles.container}>
       <FormsTitle />

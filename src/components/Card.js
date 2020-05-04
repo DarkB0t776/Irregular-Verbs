@@ -1,6 +1,11 @@
+// Core
 import React from 'react';
-import {StyleSheet, View, TouchableOpacity, Image, Dimensions} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { StyleSheet, View, TouchableOpacity, Image, Dimensions } from 'react-native';
+
+// Constants
+import Images from '../constants/Images';
+
+// Components
 import ColorButton from './ColorButton';
 import WordsRow from './WordsRow';
 import TranscriptRow from './TranscriptRow';
@@ -8,9 +13,11 @@ import SoundRow from './SoundRow';
 import TranslationRow from './TranslationRow';
 import Definition from './Definition';
 import Examples from './Examples';
-import Images from '../constants/Images';
-import CardIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Star from './Star';
+
+// Other
+import Icon from 'react-native-vector-icons/Ionicons';
+import CardIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import QuestionIcon from 'react-native-vector-icons/FontAwesome5';
 
 const windowWidth = Dimensions.get('window').width;
@@ -46,7 +53,7 @@ const Card = ({
           if (allWords) {
             navigation.navigate('MainPractice', {
               screen: 'Cards',
-              params: {words: allWords, changeColor},
+              params: { words: allWords, changeColor },
             });
             hideModal();
           } else {
@@ -124,7 +131,7 @@ const Card = ({
   };
 
   return (
-    <View style={{...styles.content, width: cardScreen ? windowWidth : '100%'}}>
+    <View style={{ ...styles.content, width: cardScreen ? windowWidth : '100%' }}>
       {iconsSection}
       <View style={styles.colorsContainer}>
         <TouchableOpacity
@@ -139,7 +146,7 @@ const Card = ({
           }}>
           <ColorButton
             wordColor={word.color}
-            style={{backgroundColor: '#76D3F5'}}
+            style={{ backgroundColor: '#76D3F5' }}
           />
         </TouchableOpacity>
         <TouchableOpacity
@@ -148,7 +155,7 @@ const Card = ({
           }}>
           <ColorButton
             wordColor={word.color}
-            style={{backgroundColor: '#F7D257'}}
+            style={{ backgroundColor: '#F7D257' }}
           />
         </TouchableOpacity>
         <TouchableOpacity
@@ -157,7 +164,7 @@ const Card = ({
           }}>
           <ColorButton
             wordColor={word.color}
-            style={{backgroundColor: '#63E244'}}
+            style={{ backgroundColor: '#63E244' }}
           />
         </TouchableOpacity>
         <TouchableOpacity
@@ -166,7 +173,7 @@ const Card = ({
           }}>
           <ColorButton
             wordColor={word.color}
-            style={{backgroundColor: '#F55757'}}
+            style={{ backgroundColor: '#F55757' }}
           />
         </TouchableOpacity>
       </View>

@@ -1,8 +1,11 @@
+// Core
 import React from 'react';
-import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+
+// Other
 import ArrowLeft from 'react-native-vector-icons/AntDesign';
 
-const DefaultStackHeader = ({screenName, navigation, exam, scene}) => {
+const DefaultStackHeader = ({ screenName, navigation, exam, scene }) => {
   const words = scene.route.params ? scene.route.params.words : null;
   const setWords = scene.route.params ? scene.route.params.setWords : null;
   const setPercentage = scene.route.params
@@ -23,9 +26,9 @@ const DefaultStackHeader = ({screenName, navigation, exam, scene}) => {
     }
 
     if (scene.route.name === 'PracticeAll' || scene.route.name === 'Exam') {
-      return navigation.navigate('Main', {screen: 'Verbs'});
+      return navigation.navigate('Main', { screen: 'Verbs' });
     }
-    return navigation.navigate('MainPractice', {screen: 'PracticeAll'});
+    return navigation.navigate('MainPractice', { screen: 'PracticeAll' });
   };
 
   return (

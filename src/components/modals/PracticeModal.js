@@ -1,3 +1,4 @@
+// Core
 import React from 'react';
 import {
   StyleSheet,
@@ -7,9 +8,11 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
+
+// Constants
 import Colors from '../../constants/Colors';
 
-const PracticeModal = ({visible, navigation, hideModal, words, setWords}) => {
+const PracticeModal = ({ visible, navigation, hideModal, words, setWords }) => {
   return (
     <Modal visible={visible} transparent onRequestClose={hideModal}>
       <View style={styles.backdrop}>
@@ -38,7 +41,7 @@ const PracticeModal = ({visible, navigation, hideModal, words, setWords}) => {
               onPress={() => {
                 navigation.navigate('MainPractice', {
                   screen: 'Exam',
-                  params: {words, setWords},
+                  params: { words, setWords },
                 });
                 hideModal();
               }}>

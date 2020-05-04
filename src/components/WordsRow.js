@@ -1,7 +1,8 @@
+// Core
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-const WordsRow = ({word}) => {
+const WordsRow = ({ word }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.word}>{word.infinitive.word}</Text>

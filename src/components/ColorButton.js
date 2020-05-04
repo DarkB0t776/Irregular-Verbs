@@ -1,5 +1,8 @@
+// Core
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
+
+// Constants
 import CheckIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ColorButton = props => {
@@ -13,7 +16,7 @@ const ColorButton = props => {
     check = <CheckIcon name="check-outline" size={35} />;
     console.log('changed');
   }
-  return <View style={{...styles.colorButton, ...props.style}}>{check}</View>;
+  return <View style={{ ...styles.colorButton, ...props.style }}>{check}</View>;
 };
 
 const styles = StyleSheet.create({

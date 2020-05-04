@@ -1,16 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, ImageBackground} from 'react-native';
-import {useRoute, useNavigation} from '@react-navigation/native';
-import ExamWordsLabel from '../components/ExamWordsLabel';
+// Core
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, ImageBackground } from 'react-native';
+import { useRoute, useNavigation } from '@react-navigation/native';
+
+// Constants
 import Colors from '../constants/Colors';
+
+// Components
+import ExamWordsLabel from '../components/ExamWordsLabel';
 import DefaultStackHeader from '../components/headers/DefaultStackHeader';
 
 const ExamScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const [percentage, setPercentage] = useState(0);
-
-  // console.log(route);
 
   const words = route.params.words;
   const setWords = route.params.setWords;
@@ -44,7 +47,7 @@ const ExamScreen = () => {
       <ExamWordsLabel
         title="elementary"
         words={elementaryWords}
-        style={{backgroundColor: Colors.examYellow}}
+        style={{ backgroundColor: Colors.examYellow }}
         setWords={setWords}
         navigation={navigation}
         exam={exam}

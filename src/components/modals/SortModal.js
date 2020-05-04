@@ -1,21 +1,26 @@
-import React, {useState} from 'react';
-import {Text, View, Modal, StyleSheet} from 'react-native';
-import Colors from '../../constants/Colors';
-import {CheckBox} from 'react-native-elements';
+// Core
+import React, { useState } from 'react';
+import { View, Modal, StyleSheet } from 'react-native';
 
-const SortModal = ({visible, closeModal, sortList}) => {
+// Constants
+import Colors from '../../constants/Colors';
+
+// Other
+import { CheckBox } from 'react-native-elements';
+
+const SortModal = ({ visible, closeModal, sortList }) => {
   const [checked, setChecked] = useState({
-    alpha: false,
+    alpha: true,
     color: false,
   });
 
   const toggleChecked = type => {
     switch (type) {
       case 'alpha':
-        setChecked({alpha: true, color: false});
+        setChecked({ alpha: true, color: false });
         break;
       case 'color':
-        setChecked({alpha: false, color: true});
+        setChecked({ alpha: false, color: true });
         break;
       default:
         return;

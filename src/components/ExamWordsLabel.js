@@ -1,5 +1,8 @@
+// Core
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+
+// Components
 import Grade from './Grade';
 
 const ExamWordsLabel = props => {
@@ -19,7 +22,7 @@ const ExamWordsLabel = props => {
           return;
         }
       }}>
-      <View style={{...styles.container, ...props.style}}>
+      <View style={{ ...styles.container, ...props.style }}>
         <View style={styles.wordsInfoContainer}>
           <Text style={styles.text}>{props.title.toUpperCase()}</Text>
           <View style={styles.scoresContainer}>

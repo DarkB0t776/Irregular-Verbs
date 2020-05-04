@@ -1,10 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {useNavigationState} from '@react-navigation/native';
+// Core
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { useNavigationState } from '@react-navigation/native';
+
+// Constants
 import Colors from '../constants/Colors';
+
+// Components
 import FontFamilyModal from '../components/modals/FontFamilyModal';
 import NotificationModal from '../components/modals/NotificationModal';
-import {CheckBox, Divider} from 'react-native-elements';
+
+// Other
+import { CheckBox, Divider } from 'react-native-elements';
 
 let PushNotification = require('react-native-push-notification');
 const SettingsScreen = () => {
@@ -29,10 +36,10 @@ const SettingsScreen = () => {
 
   // Notifications
   PushNotification.configure({
-    onRegister: function(token) {
+    onRegister: function (token) {
       console.log('TOKEN:', token);
     },
-    onNotification: function(notification) {
+    onNotification: function (notification) {
       console.log('NOTIFICATION:', notification);
       notification.finish(PushNotificationIOS.FetchResult.NoData);
     },
@@ -94,8 +101,8 @@ const SettingsScreen = () => {
         {enableNotifications ? (
           <Text style={styles.description}>Yes</Text>
         ) : (
-          <Text style={styles.description}>No</Text>
-        )}
+            <Text style={styles.description}>No</Text>
+          )}
       </View>
       <TouchableOpacity onPress={showNotfModalHandler}>
         <View style={styles.infoContainer}>

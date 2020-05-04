@@ -1,10 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+// Core
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
+
+// Other
 import Icon from 'react-native-vector-icons/AntDesign';
 
 const Sound = require('react-native-sound');
 
-const SoundRow = ({infinitive, pastSimple, pastPart, playLoop, getSounds}) => {
+const SoundRow = ({ infinitive, pastSimple, pastPart, playLoop, getSounds }) => {
   const [playAudio, setPlayAudio] = useState(false);
 
   useEffect(() => {

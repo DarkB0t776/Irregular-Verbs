@@ -1,9 +1,12 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {StyleSheet, View, FlatList} from 'react-native';
+// Core
+import React, { useState, useRef, useEffect } from 'react';
+import { StyleSheet, View, FlatList } from 'react-native';
+
+// Components
 import Card from '../components/Card';
 import CardHeader from '../components/headers/CardHeader';
 
-const CardsScreen = ({route, navigation}) => {
+const CardsScreen = ({ route, navigation }) => {
   let currentIdx = 0;
   const words = route.params.words;
   const changeColor = route.params.changeColor;
@@ -91,7 +94,7 @@ const CardsScreen = ({route, navigation}) => {
         data={words}
         extraData={refresh}
         keyExtractor={item => item.id}
-        renderItem={({item}) => {
+        renderItem={({ item }) => {
           return (
             <View style={styles.cardContainer}>
               <Card
@@ -115,7 +118,7 @@ const CardsScreen = ({route, navigation}) => {
 export default CardsScreen;
 
 const styles = StyleSheet.create({
-  container: {flex: 1, flexDirection: 'row'},
+  container: { flex: 1, flexDirection: 'row' },
   cardContainer: {
     flex: 1,
   },

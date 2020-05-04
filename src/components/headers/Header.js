@@ -1,4 +1,5 @@
-import React, {useState, useRef, useEffect} from 'react';
+// Core
+import React, { useState, useRef, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,16 +7,20 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
+
+// Components
+import PracticeModal from '../modals/PracticeModal';
+
+// Other
 import Icon from 'react-native-vector-icons/Fontisto';
 import MenuIcon from 'react-native-vector-icons/Entypo';
 import SchoolIcon from 'react-native-vector-icons/Ionicons';
-import PracticeModal from '../modals/PracticeModal';
 import MaterialTabs from 'react-native-material-tabs';
 import CloseIcon from 'react-native-vector-icons/AntDesign';
 
 const SCREEN_NAMES = ['Verbs', 'Favorite', 'Practice'];
 
-const Header = ({navigation, state}) => {
+const Header = ({ navigation, state }) => {
   const [modal, setModal] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [term, setTerm] = useState('');

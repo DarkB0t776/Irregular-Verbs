@@ -1,10 +1,13 @@
+// Core
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+
+// Constants
 import Colors from '../constants/Colors';
 
 const TranslationRow = props => {
   return (
-    <Text style={{...styles.translation, ...props.style}}>
+    <Text style={{ ...styles.translation, ...props.style }}>
       {props.translation.join(', ')}
     </Text>
   );
