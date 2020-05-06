@@ -36,6 +36,9 @@ const VerbsList = ({
     listItem: {
       fontSize: fontSize,
       fontFamily: font,
+      flex: 1,
+      textAlign: 'center',
+      position: 'relative'
     },
     translateContainer: {
       flexDirection: 'row',
@@ -109,15 +112,14 @@ const VerbsList = ({
                 showModal(item);
               }}>
                 <View style={styles.listContainer}>
-                  {showSimple ? <Text style={{ ...styles.listItem }}>{item.infinitive.word}</Text> : null}
-                  <Text>|</Text>
-                  {showPast ? <Text style={styles.listItem}>{item.pastSimple.word}</Text> : null}
-                  <Text>|</Text>
-                  {showPastPart ? <Text style={styles.listItem}>{item.pastPart.word}</Text> : null}
+                  <Text style={{ ...styles.listItem, borderRightWidth: 1, opacity: showSimple ? 1 : 0 }}>{item.infinitive.word}</Text>
+
+                  <Text style={{ ...styles.listItem, opacity: showPast ? 1 : 0 }}>{item.pastSimple.word}</Text>
+
+                  <Text style={{ ...styles.listItem, borderLeftWidth: 1, opacity: showPastPart ? 1 : 0 }}>{item.pastPart.word}</Text>
                 </View>
                 <View style={styles.translateContainer}>
-                  {showTranslation ? <Text style={styles.translation}>{item.ua.join(', ')}</Text> : null}
-
+                  <Text style={{ ...styles.translation, opacity: showTranslation ? 1 : 0 }}>{item.ua.join(', ')}</Text>
                 </View>
               </TouchableOpacity>
             </View>
