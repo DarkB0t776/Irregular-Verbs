@@ -33,6 +33,14 @@ const Header = ({ navigation, state }) => {
     searchRef.current?.focus();
   });
 
+  // useEffect(() => {
+  //   if (onSearchHandler) {
+  //     if (!term) {
+  //       onSearchHandler(words);
+  //     }
+  //   }
+  // });
+
   useEffect(() => {
     if (onSearchHandler) {
       onSearchHandler(
@@ -74,7 +82,6 @@ const Header = ({ navigation, state }) => {
     </>
   );
 
-  console.log(term);
 
   if (showSearch) {
     mainSection = (

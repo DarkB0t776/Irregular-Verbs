@@ -7,11 +7,13 @@ import CardIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SettingsIcon from 'react-native-vector-icons/Feather';
 import SortIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontSizeIcon from 'react-native-vector-icons/Octicons';
+import EyeIcon from 'react-native-vector-icons/Feather';
 
 const DrawerMenuList = ({ navigation, state }) => {
   let showSortModal = null;
   let showFontModal = null;
   let changeColor = null;
+  let showEyeIcons = null;
   let words = [];
 
   if (state) {
@@ -24,6 +26,8 @@ const DrawerMenuList = ({ navigation, state }) => {
       words = main.state.routes.find(r => r.name === 'Verbs').params.words;
       changeColor = main.state.routes.find(r => r.name === 'Verbs').params
         .changeColor;
+      showEyeIcons = main.state.routes.find(r => r.name === 'Verbs').params
+        .showEyeIcons;
     }
   }
 
@@ -44,10 +48,13 @@ const DrawerMenuList = ({ navigation, state }) => {
           <Text style={styles.text}>Flash Cards</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+      <TouchableOpacity onPress={() => {
+        navigation.closeDrawer();
+        showEyeIcons();
+      }}>
         <View style={styles.itemContainer}>
-          <SettingsIcon name="settings" style={styles.text} />
-          <Text style={styles.text}>Settings</Text>
+          <EyeIcon name="eye" style={styles.text} />
+          <Text style={styles.text}>Hide Columns</Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity
@@ -70,6 +77,12 @@ const DrawerMenuList = ({ navigation, state }) => {
           <Text style={styles.text}>Font Size</Text>
         </View>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+        <View style={styles.itemContainer}>
+          <SettingsIcon name="settings" style={styles.text} />
+          <Text style={styles.text}>Settings</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -78,6 +91,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginTop: 10,
   },
   text: {
     color: 'white',

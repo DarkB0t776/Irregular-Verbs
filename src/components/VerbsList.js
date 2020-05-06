@@ -13,7 +13,17 @@ import MinusIcon from 'react-native-vector-icons/Feather';
  * @param {*} { data, showModal, fontSize, font, practiceScreen }
  * @returns JSX
  */
-const VerbsList = ({ data, showModal, fontSize, font, practiceScreen }) => {
+const VerbsList = ({
+  data,
+  showModal,
+  fontSize,
+  font,
+  practiceScreen,
+  showSimple,
+  showPast,
+  showPastPart,
+  showTranslation
+}) => {
 
   // Styles
   const styles = StyleSheet.create({
@@ -99,14 +109,15 @@ const VerbsList = ({ data, showModal, fontSize, font, practiceScreen }) => {
                 showModal(item);
               }}>
                 <View style={styles.listContainer}>
-                  <Text style={styles.listItem}>{item.infinitive.word}</Text>
+                  {showSimple ? <Text style={styles.listItem}>{item.infinitive.word}</Text> : null}
                   <Text>|</Text>
-                  <Text style={styles.listItem}>{item.pastSimple.word}</Text>
+                  {showPast ? <Text style={styles.listItem}>{item.pastSimple.word}</Text> : null}
                   <Text>|</Text>
-                  <Text style={styles.listItem}>{item.pastPart.word}</Text>
+                  {showPastPart ? <Text style={styles.listItem}>{item.pastPart.word}</Text> : null}
                 </View>
                 <View style={styles.translateContainer}>
-                  <Text style={styles.translation}>{item.ua.join(', ')}</Text>
+                  {showTranslation ? <Text style={styles.translation}>{item.ua.join(', ')}</Text> : null}
+
                 </View>
               </TouchableOpacity>
             </View>

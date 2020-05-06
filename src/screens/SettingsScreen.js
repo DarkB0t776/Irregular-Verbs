@@ -64,9 +64,8 @@ const SettingsScreen = () => {
   useEffect(() => {
     if (enableNotifications) {
       testPush();
-      console.log('Hello');
     }
-  });
+  }, [enableNotifications]);
 
   return (
     <View style={styles.container}>
