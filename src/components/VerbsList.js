@@ -109,7 +109,7 @@ const VerbsList = ({
                 showModal(item);
               }}>
                 <View style={styles.listContainer}>
-                  {showSimple ? <Text style={styles.listItem}>{item.infinitive.word}</Text> : null}
+                  {showSimple ? <Text style={{ ...styles.listItem }}>{item.infinitive.word}</Text> : null}
                   <Text>|</Text>
                   {showPast ? <Text style={styles.listItem}>{item.pastSimple.word}</Text> : null}
                   <Text>|</Text>

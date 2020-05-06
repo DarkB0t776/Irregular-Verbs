@@ -21,12 +21,14 @@ const SettingsScreen = () => {
   const [notfInterval, setNotfInterval] = useState(24);
   const state = useNavigationState(state => state);
 
+
   const fontFamily = state.routes
     .find(r => r.name === 'Main')
     .state.routes.find(r => r.name === 'Verbs').params.fontFamily;
   const setFontFamily = state.routes
     .find(r => r.name === 'Main')
     .state.routes.find(r => r.name === 'Verbs').params.setFontFamily;
+
 
   const showFontModalHandler = () => setShowFontModal(true);
   const hideFontModalHandler = () => setShowFontModal(false);

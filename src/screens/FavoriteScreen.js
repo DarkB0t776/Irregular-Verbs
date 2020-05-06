@@ -9,12 +9,17 @@ import VerbsList from '../components/VerbsList';
 
 const FavoriteScreen = () => {
   const state = useNavigationState(state => state);
+  const [favoriteWords, setFavoriteWords] = useState([]);
+
   const words = state?.routes.find(r => r.name === 'Verbs').params.words;
   const fontFamily = state?.routes.find(r => r.name === 'Verbs').params
     .fontFamily;
   const fontSize = state?.routes.find(r => r.name === 'Verbs').params.fontSize;
+  const showSimple = state?.routes.find(r => r.name === 'Verbs').params.showSimpleSection;
+  const showPast = state?.routes.find(r => r.name === 'Verbs').params.showPastSection;
+  const showPastPart = state?.routes.find(r => r.name === 'Verbs').params.showPastPartSection;
+  const showTranslation = state?.routes.find(r => r.name === 'Verbs').params.showTranslationSection;
 
-  const [favoriteWords, setFavoriteWords] = useState([]);
 
   useEffect(() => {
     if (state) {
@@ -27,7 +32,15 @@ const FavoriteScreen = () => {
   return (
     <View style={styles.container}>
       <FormsTitle />
-      <VerbsList data={favoriteWords} font={fontFamily} fontSize={fontSize} />
+      <VerbsList
+        showSimple={showSimple}
+        showPast={showPast}
+        showPastPart={showPastPart}
+        showTranslation={showTranslation}
+        data={favoriteWords}
+        font={fontFamily}
+        fontSize={fontSize}
+      />
     </View>
   );
 };

@@ -13,11 +13,24 @@ const PracticeScreen = () => {
   const fontFamily = state?.routes.find(r => r.name === 'Verbs').params
     .fontFamily;
   const fontSize = state?.routes.find(r => r.name === 'Verbs').params.fontSize;
+  const showSimple = state?.routes.find(r => r.name === 'Verbs').params.showSimpleSection;
+  const showPast = state?.routes.find(r => r.name === 'Verbs').params.showPastSection;
+  const showPastPart = state?.routes.find(r => r.name === 'Verbs').params.showPastPartSection;
+  const showTranslation = state?.routes.find(r => r.name === 'Verbs').params.showTranslationSection;
 
   return (
     <View>
       <FormsTitle />
-      <VerbsList data={words} practiceScreen font={fontFamily} fontSize={fontSize} />
+      <VerbsList
+        showSimple={showSimple}
+        showPast={showPast}
+        showPastPart={showPastPart}
+        showTranslation={showTranslation}
+        data={words}
+        practiceScreen
+        font={fontFamily}
+        fontSize={fontSize}
+      />
     </View>
   );
 };

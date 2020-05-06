@@ -43,8 +43,23 @@ const VerbsScreen = () => {
       showEyeIcons: showEyeIconsHandler,
       showFontModal: showFontSizeModalHandler,
       showSortModal: showSortModalHandler,
+
     })
   }, []);
+
+  useEffect(() => {
+    navigation.setParams({
+      showSimpleSection,
+      showPastSection,
+      showPastPartSection,
+      showTranslationSection
+    })
+  }, [
+    showSimpleSection,
+    showPastSection,
+    showPastPartSection,
+    showTranslationSection
+  ]);
 
   useEffect(() => {
     navigation.setParams({
@@ -174,28 +189,27 @@ const VerbsScreen = () => {
     <>
       <View style={{ ...styles.eyeContainer, top: 230, left: 30 }}>
         <TouchableOpacity onPress={() => setShowSimpleSection(!showSimpleSection)}>
-          <Eye />
+          <Eye clicked={showSimpleSection} />
         </TouchableOpacity>
       </View>
       <View style={{ ...styles.eyeContainer, top: 230, left: 150 }}>
         <TouchableOpacity onPress={() => setShowPastSection(!showPastSection)}>
-          <Eye style={{}} />
+          <Eye clicked={showPastSection} />
         </TouchableOpacity>
       </View>
       <View style={{ ...styles.eyeContainer, top: 230, left: 260 }}>
         <TouchableOpacity onPress={() => setShowPastPartSection(!showPastPartSection)}>
-          <Eye />
+          <Eye clicked={showPastPartSection} />
         </TouchableOpacity>
       </View>
       <View style={{ ...styles.eyeContainer, top: 150, right: 20 }}>
         <TouchableOpacity onPress={() => setShowTranslationSection(!showTranslationSection)}>
-          <Eye style={{ width: 40, height: 40 }} iconStyle={{ fontSize: 20 }} />
+          <Eye style={{ width: 40, height: 40 }} iconStyle={{ fontSize: 20 }} clicked={showTranslationSection} />
         </TouchableOpacity>
       </View>
     </>
   );
 
-  console.log(showSimpleSection);
 
   return (
     <View style={styles.container}>
